@@ -32,7 +32,6 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 //render index page
-
 app.get(('/'), (req, res) => {
   Restaurants.find()
     .lean()
@@ -40,16 +39,25 @@ app.get(('/'), (req, res) => {
     .catch(error => console.log(error))
 })
 
-//Create a new restaurant
+//Create a new restaurant page
 app.get(('/restaurants/new'), (req, res) => {
   return res.render('new')
 })
-
+//Create a new restaurant post to server
 app.post(('/restaurants'), (req, res) => {
   const restaurant = req.body
   console.log(req.body)
   return Restaurants.create(restaurant)
     .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+//Render Detail Page
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurants.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
 
