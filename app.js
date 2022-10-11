@@ -35,7 +35,7 @@ app.set('view engine', 'handlebars')
 app.get(('/'), (req, res) => {
   Restaurants.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .then(restaurants => res.render('index', { restaurants, placeholder }))
     .catch(error => console.log(error))
 })
 
@@ -46,7 +46,6 @@ app.get(('/restaurants/new'), (req, res) => {
 //Create a new restaurant post to server
 app.post(('/restaurants'), (req, res) => {
   const restaurant = req.body
-  console.log(req.body)
   return Restaurants.create(restaurant)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -60,6 +59,58 @@ app.get('/restaurants/:id', (req, res) => {
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
+
+//Render Edit Page
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurants.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+//Post Edit Result
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  console.log(req.body)
+  console.log(id)
+  return Restaurants.findByIdAndUpdate(id, req.body)
+    .lean()
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+//delete restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurants.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+
+})
+//render result of search
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim().toLowerCase()
+  const keywordEnter = req.query.keyword
+  //if keyword is empty string, redirect to home 
+  if (!keyword) {
+    return res.redirect('/')
+  }
+
+  return Restaurants.find({})
+    .lean()
+    .then((restaurants) => {
+      const searchRestaurant = restaurants.filter(
+        (data) =>
+          data.name.toLowerCase().includes(keyword) || data.category.toLowerCase().includes(keyword)
+      )
+      res.render('index', { restaurants: searchRestaurant, placeholder: keywordEnter })
+    })
+    .catch(error => console.log(error))
+
+})
+
 
 //start and listen on the Express Server
 app.listen(port, () => {
