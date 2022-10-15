@@ -11,7 +11,6 @@ const restaurantSchema = new Schema({
   },
   name_en: {
     type: String,
-    required: true
   },
   category: {
     type: String,
@@ -31,7 +30,6 @@ const restaurantSchema = new Schema({
   },
   google_map: {
     type: String,
-    required: true
   },
   rating: {
     type: Number,
@@ -39,7 +37,6 @@ const restaurantSchema = new Schema({
   },
   description: {
     type: String,
-    required: true
   }
 
 })

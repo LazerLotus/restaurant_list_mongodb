@@ -36,19 +36,26 @@ app.get(('/'), (req, res) => {
   Restaurants.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants, placeholder }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 })
 
 //Create a new restaurant page
 app.get(('/restaurants/new'), (req, res) => {
   return res.render('new')
 })
+
 //Create a new restaurant post to server
 app.post(('/restaurants'), (req, res) => {
   const restaurant = req.body
   return Restaurants.create(restaurant)
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 })
 
 //Render Detail Page
@@ -57,7 +64,10 @@ app.get('/restaurants/:id', (req, res) => {
   return Restaurants.findById(id)
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 })
 
 //Render Edit Page
@@ -66,7 +76,10 @@ app.get('/restaurants/:id/edit', (req, res) => {
   return Restaurants.findById(id)
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 })
 //Post Edit Result
 app.post('/restaurants/:id/edit', (req, res) => {
@@ -76,7 +89,10 @@ app.post('/restaurants/:id/edit', (req, res) => {
   return Restaurants.findByIdAndUpdate(id, req.body)
     .lean()
     .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 })
 
 //delete restaurant
@@ -85,7 +101,10 @@ app.post('/restaurants/:id/delete', (req, res) => {
   return Restaurants.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 
 
 })
@@ -107,7 +126,10 @@ app.get('/search', (req, res) => {
       )
       res.render('index', { restaurants: searchRestaurant, placeholder: keywordEnter })
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { error: error.message })
+    })
 
 })
 

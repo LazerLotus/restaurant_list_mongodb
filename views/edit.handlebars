@@ -12,8 +12,8 @@
                 ID
               </label>
               <div class="col-md-8">
-                <input type="number" name="id" class="form-control" id="id" value="{{restaurant.id}}">
-                <small class="text-muted form-text">Must be a number</small>
+                <input type="number" name="id" class="form-control" id="id" value="{{restaurant.id}}" required>
+                <small class="text-muted form-text">Required. Must be a number</small>
               </div>
             </div>
 
@@ -22,7 +22,8 @@
                 Name
               </label>
               <div class="col-md-8">
-                <input type="text" name="name" class="form-control" id="name" value="{{restaurant.name}}">
+                <input type="text" name="name" class="form-control" id="name" value="{{restaurant.name}}" required>
+                <small class="text-muted form-text">Required. Must be a number</small>
               </div>
             </div>
 
@@ -40,7 +41,9 @@
                 Category
               </label>
               <div class="col-md-8">
-                <input type="text" name="category" class="form-control" id="category" value="{{restaurant.category}}">
+                <input type="text" name="category" class="form-control" id="category" value="{{restaurant.category}}"
+                  required>
+                <small class="text-muted form-text">Required.</small>
               </div>
             </div>
 
@@ -49,7 +52,8 @@
                 Image
               </label>
               <div class="col-md-8">
-                <input type="text" name="image" class="form-control" id="image" value="{{restaurant.image}}">
+                <input type="text" name="image" class="form-control" id="image" value="{{restaurant.image}}" required>
+                <small class="text-muted form-text">Required.</small>
               </div>
             </div>
 
@@ -58,7 +62,9 @@
                 Location
               </label>
               <div class="col-md-8">
-                <input type="text" name="location" class="form-control" id="location" value="{{restaurant.location}}">
+                <input type="text" name="location" class="form-control" id="location" value="{{restaurant.location}}"
+                  required>
+                <small class="text-muted form-text">Required.</small>
               </div>
             </div>
 
@@ -86,8 +92,9 @@
                 Rating
               </label>
               <div class="col-md-8">
-                <input type="number" name="rating" class="form-control" id="rating" value="{{restaurant.rating}}">
-                <small class="text-muted form-text">Must be a number</small>
+                <input type="number" name="rating" class="form-control" id="rating" value="{{restaurant.rating}}"
+                  required>
+                <small class="text-muted form-text">Required. Must be a number</small>
               </div>
             </div>
 
@@ -97,7 +104,8 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="description" class="form-control" id="description"
-                  value="{{restaurant.description}}">
+                  value="{{restaurant.description}}" required>
+                <small class="text-muted form-text">Required.</small>
               </div>
             </div>
 
