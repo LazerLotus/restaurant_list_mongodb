@@ -20,20 +20,26 @@ router.get(('/'), (req, res) => {
 //render result of search
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
+  const sort = req.query.sort
+  const order = req.query.order
+  const title = req.query.title
   const keywordEnter = req.query.keyword
   //if keyword is empty string, redirect to home 
-  if (!keyword) {
+  if (!keyword && !sort) {
     return res.redirect('/')
   }
 
   return Restaurants.find({})
     .lean()
+    .sort({ [sort]: order })
     .then((restaurants) => {
-      const searchRestaurant = restaurants.filter(
+      const searchRestaurant = !keyword ? restaurants : restaurants.filter(
         (data) =>
           data.name.toLowerCase().includes(keyword) || data.category.toLowerCase().includes(keyword)
       )
-      res.render('index', { restaurants: searchRestaurant, placeholder: keywordEnter })
+      placeholder = !!keywordEnter.trim() ? keywordEnter : "輸入餐廳、分類"
+
+      res.render('index', { restaurants: searchRestaurant, placeholder: placeholder, keyword: keywordEnter, title })
     })
     .catch(error => {
       console.log(error)
