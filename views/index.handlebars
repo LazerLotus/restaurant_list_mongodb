@@ -5,7 +5,6 @@
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder={{placeholder}}
             aria-label="Restaurant Name..." value="" aria-describedby="search-button">
@@ -14,6 +13,23 @@
           </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-end">
+    <div id="sortSelector">
+      <div class="dropdown">
+        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Sort
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">from A to Z</a></li>
+          <li><a class="dropdown-item" href="#">from Z to A</a></li>
+          <li><a class="dropdown-item" href="#">By Category</a></li>
+          <li><a class="dropdown-item" href="#">By location</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
