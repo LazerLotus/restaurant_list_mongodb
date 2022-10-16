@@ -37,6 +37,9 @@ mongoose: 5.9.7
 - User can click "Delete" to delete restautant
 6. Edit Restaurant
 - User can click "edit" to submit form to chagne detail of restaurant
+7. Sorting
+- User can click sort button and sorting with name, location and category
+
 # Enviroment setup
 Node.js
 
