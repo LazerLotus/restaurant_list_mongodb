@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title">Edit Restaurant</h5>
           <hr>
-          <form method="POST" action="/restaurants/{{restaurant._id}}/edit">
+          <form method="POST" action="/restaurants/{{restaurant._id}}?_method=PUT">
             <div class="row mb-3 g-2">
               <label for="id" class="col-md-4 col-form-label">
                 ID
@@ -23,7 +23,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="name" class="form-control" id="name" value="{{restaurant.name}}" required>
-                <small class="text-muted form-text">Required. Must be a number</small>
+                <small class="text-muted form-text">Required.</small>
               </div>
             </div>
 
