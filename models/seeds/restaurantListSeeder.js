@@ -1,14 +1,7 @@
-const mongoose = require('mongoose')
 const restaurants = require('../restaurants')
-
 //import JSON data
 const restaurantListJson = require('../../restaurant.json')
-
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('mongodb error!')
-})
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   restaurants.create(restaurantListJson.results)
