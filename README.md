@@ -74,3 +74,20 @@ npm run seed
 # Contributor
 Lu-An Tsai
 luan.tsai1991@gmail.com
+
+
+> **Note**
+> This is a note
+
+> **Warning**
+> This is a note
+This is note body
+
+>**Behold, Dog**
+>THis is a dog
+
+> **Note**
+> This is a note
+
+> **Warning**
+> This is a warning
